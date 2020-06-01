@@ -21,7 +21,7 @@ SCRIPTNAME=wp-plugin-dist-diff  # not using $0 in case that reveals directory pa
 
 usage() {
     echo "usage: $0 plugin-slug old-version new-version"
-    echo "    e.g. $0 redirection 4.7 4.8"
+    echo "    e.g. $0 redirection 4.7.2 4.8"
 }
 
 failure() {

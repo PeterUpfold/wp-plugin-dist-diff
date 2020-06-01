@@ -8,7 +8,7 @@ Quickly review a diff of two published versions of a WordPress plugin in the pub
 
 `plugin-slug` should be the slug of the target plugin as shown in the URL of `https://wordpress.org/plugins/plugin-slug`
 
-For example, `wp-plugin-dist-diff redirection 4.7 4.8`
+For example, `wp-plugin-dist-diff redirection 4.7.2 4.8`
 
 ## Requirements
 
