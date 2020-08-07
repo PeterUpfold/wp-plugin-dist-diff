@@ -24,11 +24,31 @@ usage() {
     echo "    e.g. $0 redirection 4.7.2 4.8"
 }
 
+check_prereqs() {
+	if [ ! -x $(which hexdump) ]; then
+		echo "This script requires hexdump to be installed and in the PATH"
+		exit 254
+	fi
+	if [ ! -x $(which awk) ]; then
+		echo "This script requires awk to be installed and in the PATH"
+		exit 253
+	fi
+	if [ ! -x $(which git) ]; then
+		echo "This script requires git to be installed and in the PATH"
+		exit 252
+	fi
+	if [ ! -x $(which unzip) ]; then
+		echo "This script requires unzip to be installed and in the PATH"
+		exit 251
+	fi
+}
+
 failure() {
     >&2 echo $1
 }
 check_zip() {
-    if [ `hexdump $1 | head -n 1 | awk '{print $2 $3}'` != '504b' ]; then
+    first_bytes=$(hexdump -x $1 | head -n 1 | awk '{print $2}')
+    if [ $first_bytes != '504b' ] && [ $first_bytes != '4b50' ]; then
         failure "$1 is not a zip file"
         #cleanup
         exit 255
@@ -42,6 +62,8 @@ if (( $# != 3 )); then
     usage
     exit 1
 fi
+
+check_prereqs
 
 TEMPDIR=/tmp/$SCRIPTNAME-$$
 ORIG=$TEMPDIR/$2.zip
