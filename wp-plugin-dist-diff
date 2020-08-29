@@ -41,6 +41,10 @@ check_prereqs() {
 		echo "This script requires unzip to be installed and in the PATH"
 		exit 251
 	fi
+	if [ ! -x $(which curl) ]; then
+		echo "This script requires curl to be installed in the PATH"
+		exit 250
+	fi
 }
 
 failure() {
@@ -50,7 +54,7 @@ check_zip() {
     first_bytes=$(hexdump -x $1 | head -n 1 | awk '{print $2}')
     if [ $first_bytes != '504b' ] && [ $first_bytes != '4b50' ]; then
         failure "$1 is not a zip file"
-        #cleanup
+        cleanup
         exit 255
     fi
 }
