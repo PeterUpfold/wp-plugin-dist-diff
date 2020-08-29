@@ -10,7 +10,7 @@ Quickly review a diff of two published versions of a WordPress plugin in the pub
 
 For example, `wp-plugin-dist-diff redirection 4.7.2 4.8`
 
-## Requirements
+## Requirements
 
  * bash
  * hexdump
